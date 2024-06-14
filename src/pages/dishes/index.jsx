@@ -10,7 +10,6 @@ function Dishes() {
     dispatch(fetchDishes());
     return () => {};
   }, [dispatch]);
-  console.log(data);
 
   return (
     <div className="w-full flex flex-col items-center mt-8">

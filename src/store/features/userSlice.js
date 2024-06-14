@@ -1,5 +1,6 @@
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { createAppSlice } from "../createAppSlice";
+import { userApi } from "../../api";
 
 export const userSlice = createAppSlice({
   name: "user",
@@ -22,11 +23,9 @@ export const userSlice = createAppSlice({
     loginUser: create.asyncThunk(
       async (userPayload, thunkApi) => {
         try {
-          const response = await axios.post(
-            "http://localhost:3000/api/v1/user/login",
-            userPayload,
-            { withCredentials: true }
-          );
+          const response = await userApi.post("/login", userPayload, {
+            withCredentials: true,
+          });
 
           const data = response.data;
           console.log(data);
@@ -64,11 +63,9 @@ export const userSlice = createAppSlice({
     signupUser: create.asyncThunk(
       async (signupPayload, thunkApi) => {
         try {
-          const response = await axios.post(
-            "http://localhost:3000/api/v1/user/signup",
-            signupPayload,
-            { withCredentials: true }
-          );
+          const response = await userApi.post("/signup", signupPayload, {
+            withCredentials: true,
+          });
           const data = response.data;
           if (data.success) {
             return data;

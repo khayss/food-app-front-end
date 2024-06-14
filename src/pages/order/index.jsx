@@ -24,7 +24,6 @@ function Order() {
     createOrder(state);
   };
 
-  console.log(orderState);
 
   useEffect(() => {
     dispatch(fetchDish(id));

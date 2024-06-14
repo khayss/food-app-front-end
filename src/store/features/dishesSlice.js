@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createAppSlice } from "../createAppSlice";
+import { generalApi } from "../../api";
 
 export const dishesSlice = createAppSlice({
   name: "dishes",
@@ -12,9 +12,7 @@ export const dishesSlice = createAppSlice({
     fetchDishes: create.asyncThunk(
       async (thunkApi) => {
         try {
-          const response = await axios.get(
-            "http://localhost:3000/api/v1/app/get-foods"
-          );
+          const response = await generalApi.get("/get-foods");
 
           return response.data;
         } catch (error) {
