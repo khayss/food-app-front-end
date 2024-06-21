@@ -18,8 +18,11 @@ function Order() {
   const navigate = useNavigate();
   const { data: userState } = useSelector(selectUser);
 
-  dispatch(getUser());
-  if (!userState || !userState.userDetails) navigate("/login");
+  useEffect(() => {
+    dispatch(getUser());
+    if (!userState || !userState.userDetails) navigate("/login");
+    return () => {};
+  }, [dispatch, navigate, userState]);
 
   const [state, setState] = useState(initialState);
   const { id } = useParams();
