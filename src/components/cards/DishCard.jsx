@@ -6,9 +6,13 @@ function DishCard({ price, name, category, image, id }) {
     naviage(`/dish/${id}`);
   };
   return (
-    <div className="w-80 overflow-hidden rounded-md bg-blue-50">
-      <div className="h-48">
-        <img src={image} alt={name} className="object-cover h-full" />
+    <div className="w-4/5 md:w-full overflow-hidden rounded-md bg-white self-center justify-self-center">
+      <div className="h-48 w-full">
+        <img
+          src={"https://food-ordering-app-backend-ypwh.onrender.com/images/public/" + image}
+          alt={name}
+          className="object-cover h-full"
+        />
       </div>
       <div className="flex flex-col items-start px-8 pt-6 pb-8 gap-2">
         <div>
@@ -22,8 +26,8 @@ function DishCard({ price, name, category, image, id }) {
         </div>
         <div className="w-full flex flex-col items-start">
           <button
-            onClick={()=>handleButtonClick(id)}
-            className="w-1/2 px-3 py-3 rounded-md text-zinc-100 bg-blue-500 text-lg font-medium"
+            onClick={() => handleButtonClick(id)}
+            className="w-1/2 px-3 py-3 rounded-md text-zinc-100 bg-main text-lg font-medium"
           >
             Order
           </button>

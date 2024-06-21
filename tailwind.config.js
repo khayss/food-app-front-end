@@ -6,6 +6,12 @@ export default {
       fontFamily: {
         body: ["Lato"],
       },
+      colors: {
+        main: "#FFA62F",
+        secondary: "#FFE8C8",
+        background: "#FFE8C8",
+        alternate: "#ACD793",
+      },
     },
   },
   plugins: [],

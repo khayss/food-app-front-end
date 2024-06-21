@@ -12,13 +12,14 @@ function Form({
   disabled,
   loading,
   success,
+  customInput,
 }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="px-8 py-16 rounded-md bg-blue-50 bg-opacity-50 flex flex-col items-center justify-center w-full lg:px-24 xl:px-32"
+      className="px-8 pb-16 pt-12 rounded-md bg-white flex flex-col items-center justify-center w-full lg:px-24 xl:px-32"
     >
-      <h3 className="w-full text-center text-2xl font-normal text-blue-900">
+      <h3 className="w-full text-center text-2xl font-normal text-main pb-6">
         {formHeading}
       </h3>
       {fields?.map((field, index) => (
@@ -33,10 +34,15 @@ function Form({
           required={field?.required}
         />
       ))}
+      {customInput?.map((input, index) => (
+        <div key={index} className="input_container">
+          {input}
+        </div>
+      ))}
       <div className="w-full pt-4 pb-2">
         <button
           type="submit"
-          className={`w-full px-3 py-3 bg-blue-800 border-0 rounded-md text-zinc-200 text-lg font-normal hover:opacity-90 flex items-center justify-center ${
+          className={`w-full px-3 py-2 bg-main border-0 rounded-2xl text-zinc-200 text-lg font-medium hover:opacity-90 flex items-center justify-center ${
             loading && "opacity-70"
           }`}
           disabled={disabled}
@@ -47,7 +53,7 @@ function Form({
         {feedback && (
           <p
             className={`${
-              success ? "text-blue-600" : "text-red-700"
+              success ? "text-main" : "text-red-700"
             } w-full text-center py-1 mt-2 px-3`}
           >
             {feedback}

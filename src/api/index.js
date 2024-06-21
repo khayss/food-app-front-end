@@ -1,14 +1,17 @@
 import axios from "axios";
 
+const prefix = "https://food-ordering-app-backend-ypwh.onrender.com/api/v1";
+// const prefix = "http://localhost:4000/api/v1";
+
 export const userApi = axios.create({
-  baseURL: "https://food-ordering-app-backend-ypwh.onrender.com/api/v1/user",
+  baseURL: prefix + "/user",
 });
 export const generalApi = axios.create({
-  baseURL: "https://food-ordering-app-backend-ypwh.onrender.com/api/v1/app",
+  baseURL: prefix + "/app",
 });
 export const adminApi = axios.create({
-  baseURL: "https://food-ordering-app-backend-ypwh.onrender.com/api/v1/admin",
+  baseURL: prefix + "/admin",
 });
 export const riderApi = axios.create({
-  baseURL: "https://food-ordering-app-backend-ypwh.onrender.com/api/v1/rider",
+  baseURL: prefix + "/rider",
 });

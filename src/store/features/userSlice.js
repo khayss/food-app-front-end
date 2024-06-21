@@ -97,10 +97,51 @@ export const userSlice = createAppSlice({
         },
       }
     ),
+    getUser: create.asyncThunk(
+      async (thunkApi) => {
+        try {
+          const response = await userApi.get("/get-user", {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+            },
+          });
+          const data = response.data;
+          if (data.success) {
+            return data;
+          }
+        } catch (error) {
+          if (error instanceof AxiosError && error.response) {
+            throw new Error(error.response.data.message);
+          } else {
+            throw new Error("something went wrong");
+          }
+        }
+      },
+      {
+        pending: (state) => {
+          state.loading = true;
+          state.success = false;
+        },
+        rejected: (state, action) => {
+          state.error = action.payload ?? action.error;
+          state.loading = false;
+          state.success = false;
+          state.data = null;
+        },
+        fulfilled: (state, action) => {
+          state.data = action.payload;
+          state.loading = false;
+          state.success = true;
+          state.error = null;
+        },
+      }
+    ),
   }),
 });
 
-export const { loginUser, signupUser, clearDetails } = userSlice.actions;
+export const { loginUser, signupUser, clearDetails, getUser } =
+  userSlice.actions;
 
 export const selectUser = (state) => state.user;
 

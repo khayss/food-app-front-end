@@ -1,10 +1,20 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
-import Login from "./auth/pages/Login";
 import MainLayout from "./layouts/MainLayout";
-import SignUp from "./auth/pages/SignUp";
+import SignupUser from "./auth/pages/user/SignUp";
 import Dishes from "./pages/dishes";
-import Order from "./pages/order";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./auth/pages/user/Dashboard";
+import LoginAdmin from "./auth/pages/admin/Login";
+import UserLogin from "./auth/pages/user/Login";
+import SignupAdmin from "./auth/pages/admin/Signup";
+import AdminDashboard from "./auth/pages/admin/Dashboard";
+import Orders from "./auth/pages/admin/Orders";
+import DishesAdmin from "./auth/pages/admin/DishesAdmin";
+import NewDish from "./auth/pages/admin/NewDish";
+import SignupRider from "./auth/pages/rider/Signup";
+import LoginRider from "./auth/pages/rider/Login";
+import RiderApplication from "./auth/pages/admin/RiderApplication";
+import Home from "./pages/home";
+import Order from "./auth/pages/user/Order";
 
 const router = createBrowserRouter([
   {
@@ -16,12 +26,16 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <Home />,
+      },
+      {
         path: "/login",
-        element: <Login />,
+        element: <UserLogin />,
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <SignupUser />,
       },
       {
         path: "/dishes",
@@ -34,6 +48,52 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/admin",
+        children: [
+          {
+            path: "/admin/login",
+            element: <LoginAdmin />,
+          },
+          {
+            path: "/admin/signup",
+            element: <SignupAdmin />,
+          },
+          {
+            path: "/admin/dashboard",
+            element: <AdminDashboard />,
+          },
+          {
+            path: "/admin/orders",
+            element: <Orders />,
+          },
+          {
+            path: "/admin/dishes",
+            element: <DishesAdmin />,
+          },
+          {
+            path: "/admin/new-dish",
+            element: <NewDish />,
+          },
+          {
+            path: "/admin/rider",
+            element: <RiderApplication />,
+          },
+        ],
+      },
+      {
+        path: "/rider",
+        children: [
+          {
+            path: "/rider/login",
+            element: <LoginRider />,
+          },
+          {
+            path: "/rider/signup",
+            element: <SignupRider />,
+          },
+        ],
       },
     ],
   },

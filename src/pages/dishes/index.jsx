@@ -21,7 +21,7 @@ function Dishes() {
                 key={dish?._id}
                 id={dish?._id}
                 category={dish?.category}
-                image={"http://localhost:3000/images/" + dish?.images?.[0]}
+                image={dish?.images?.[0]}
                 name={dish?.name}
                 price={dish?.priceInCents}
               />

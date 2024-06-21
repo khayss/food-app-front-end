@@ -2,3 +2,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .input-container {
+    @apply w-full py-2;
+  }
+
+  .input-field {
+    @apply w-full border-0 py-3 px-6 rounded-2xl focus:border-0 focus:outline-0 text-zinc-700 focus:text-zinc-900 bg-secondary bg-opacity-70 focus:bg-opacity-50 placeholder:text-zinc-400;
+  }
+
+  .input-label {
+    @apply w-full px-3 font-medium text-base text-main;
+  }
+  .table-head {
+    @apply font-normal text-start py-2 px-3 bg-zinc-100;
+  }
+  .table-data {
+    @apply font-normal text-start py-2 px-3 bg-white capitalize;
+  }
+}
