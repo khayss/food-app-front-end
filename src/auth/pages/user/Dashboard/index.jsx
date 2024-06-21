@@ -3,20 +3,17 @@ import { useGetOrders } from "../../../../hooks/useGetOrders";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUser, selectUser } from "../../../../store/features/userSlice";
+import useAuth from "../../../../hooks/useAuth";
 
 function Dashboard() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const auth = useAuth("/login");
+
   const { data: userState } = useSelector(selectUser);
-
-  dispatch(getUser());
-  if (!userState || !userState.userDetails) navigate("/login");
-
   const {
     orders: { data, error, loading },
   } = useGetOrders();
 
-  return (
+  return auth ? (
     <div className="w-full">
       <section className="w-full">
         <div>
@@ -51,6 +48,8 @@ function Dashboard() {
         </div>
       </section>
     </div>
+  ) : (
+    <></>
   );
 }
 
