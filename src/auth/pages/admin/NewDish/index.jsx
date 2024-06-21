@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "../../../../components/auth/Form";
 import { newFoodFormFields } from "../../../../utils/formFields";
 import { useCreateDish } from "../../../../hooks/useCreateDish";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -18,6 +19,20 @@ function NewDish() {
     state: { error, loading, success },
     createDish,
   } = useCreateDish();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      setState(initialState);
+    }
+    const timeout = setTimeout(() => {
+      if (success) {
+        navigate("/admin/dashboard");
+      }
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [success, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +59,10 @@ function NewDish() {
                 accept={"image/png, image/jpg, image/jpeg"}
               />,
             ]}
+            disabled={loading}
+            feedback={success ? "Dish created successfully" : error}
+            loading={loading}
+            success={success}
           />
         </div>
         <div></div>

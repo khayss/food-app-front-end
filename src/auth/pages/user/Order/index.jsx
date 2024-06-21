@@ -58,7 +58,7 @@ function Order() {
                 <img
                   className="object-cover h-full"
                   src={
-                    "https://food-ordering-app-backend-ypwh.onrender.com/images/public/" +
+                    "https://food-ordering-app-backend-ypwh.onrender.com/images/" +
                     image
                   }
                   key={index}

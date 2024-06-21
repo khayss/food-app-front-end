@@ -9,7 +9,7 @@ function DishCard({ price, name, category, image, id }) {
     <div className="w-4/5 md:w-full overflow-hidden rounded-md bg-white self-center justify-self-center">
       <div className="h-48 w-full">
         <img
-          src={"https://food-ordering-app-backend-ypwh.onrender.com/images/public/" + image}
+          src={"https://food-ordering-app-backend-ypwh.onrender.com/images/" + image}
           alt={name}
           className="object-cover h-full"
         />
