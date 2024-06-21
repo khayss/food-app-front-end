@@ -14,7 +14,7 @@ function LoginAdmin() {
   const [state, setState] = useState(initialState);
   const [disableForm, setDisbleForm] = useState(false);
   const {
-    state: { error, loading, success },
+    state: { error, loading, success, data },
     login,
   } = useLogin(adminApi, "adminToken");
 
@@ -25,10 +25,10 @@ function LoginAdmin() {
     const timeout1 = setTimeout(() => {
       success && navigate("/admin/dashboard");
     }, 300);
-    const timeout2 = setTimeout(() => {}, 3000);
+    
     return () => {
       clearTimeout(timeout1);
-      clearTimeout(timeout2);
+      
     };
   }, [success, navigate]);
 

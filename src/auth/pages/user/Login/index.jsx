@@ -3,6 +3,7 @@ import Form from "../../../../components/auth/Form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearDetails,
+  getUser,
   loginUser,
   selectUser,
 } from "../../../../store/features/userSlice";
@@ -18,23 +19,21 @@ function UserLogin() {
   const [state, setState] = useState(initialState);
   const [disbleForm, setDisbleForm] = useState(false);
   const dispatch = useDispatch();
-  const { loading, error, success } = useSelector(selectUser);
+  const { loading, error, success, data } = useSelector(selectUser);
   const navigate = useNavigate();
 
   useEffect(() => {
     success && setState(initialState);
     const timeout1 = setTimeout(() => {
-      dispatch(clearDetails());
       success && navigate("/dashboard");
     }, 300);
-    const timeout2 = setTimeout(() => {
+    dispatch(getUser());
+    data && data.userDetails && navigate("/dashboard");
 
-    }, 3000);
     return () => {
       clearTimeout(timeout1);
-      clearTimeout(timeout2);
     };
-  }, [success, navigate, dispatch]);
+  }, [success, navigate, dispatch, data]);
 
   const handleSubmit = (e) => {
     setDisbleForm(true);
